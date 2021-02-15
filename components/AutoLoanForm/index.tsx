@@ -33,8 +33,8 @@ class AutoLoanForm extends Component {
     return (
       <div className={styles.autoLoanForm}>
         <h1>Auto Loan Application</h1>
-        <form className={styles.form} onSubmit={this.onFormSubmit}>
-            
+        <form className={styles.form} onSubmit={this.onFormSubmit} method='post'>
+
           <div className={styles.field}>
             <label>Auto Purchase Price</label>
             <div>
