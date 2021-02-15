@@ -1,5 +1,5 @@
-import 'semantic-ui-css/semantic.min.css'
 import Head from 'next/head'
+import AutoLoanForm from '../components/AutoLoanForm'
 
 export default function Home () {
   return (
@@ -9,7 +9,9 @@ export default function Home () {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main></main>
+      <main>
+        <AutoLoanForm />
+      </main>
     </div>
   )
 }
