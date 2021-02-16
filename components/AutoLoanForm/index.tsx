@@ -2,20 +2,22 @@ import { Component } from 'react'
 import styles from './styles.module.css'
 
 type State = {
-  price: number | null
+    error: ''
+  price: string
   make: string
   model: string
-  income: number | null
-  creditScore: number | null
+  income: string
+  creditScore: string
 }
 
 class AutoLoanForm extends Component {
   state: State = {
-    price: null,
+    error: '',
+    price: '',
     make: '',
     model: '',
-    income: null,
-    creditScore: null
+    income: '',
+    creditScore: ''
   }
 
   onFormSubmit = async e => {
@@ -26,8 +28,19 @@ class AutoLoanForm extends Component {
         method: 'post',
         body: JSON.stringify(this.state)
     })
-    const data = await res.json()
-    // TODO: redirect logic
+    
+    if (!res.ok) {
+        this.setState({ error: 'Price limit exceeded. Please enter a price of $1,000,000 or less and try again.' })
+        return
+    }
+
+    const { qualified } = await res.json()
+
+    if (qualified) {
+        // reroute to success page
+    } else {
+        // reroute to denial page
+    }
   }
 
   /**

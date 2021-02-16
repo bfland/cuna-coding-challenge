@@ -47,7 +47,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse): void => {
   const data = transform(JSON.parse(req.body))
 
   if (data.price > MILLION) {
-    res.status(400).json({ message: 'Price must be less than 1,000,000.' })
+    res.status(400)
     return
   }
 
