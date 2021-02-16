@@ -18,9 +18,16 @@ class AutoLoanForm extends Component {
     creditScore: null
   }
 
-  onFormSubmit = e => {
+  onFormSubmit = async e => {
     // Disable form submission/page refresh when pressing 'enter' key.
     e.preventDefault()
+
+    const res = await fetch('/api/qualify', {
+        method: 'post',
+        body: JSON.stringify(this.state)
+    })
+    const data = await res.json()
+    // TODO: redirect logic
   }
 
   /**
@@ -33,7 +40,7 @@ class AutoLoanForm extends Component {
     return (
       <div className={styles.autoLoanForm}>
         <h1>Auto Loan Application</h1>
-        <form className={styles.form} onSubmit={this.onFormSubmit} method='post'>
+        <form className={styles.form} onSubmit={this.onFormSubmit}>
 
           <div className={styles.field}>
             <label>Auto Purchase Price</label>
