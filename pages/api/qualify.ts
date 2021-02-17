@@ -48,6 +48,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse): void => {
 
   if (data.price > MILLION) {
     res.status(400)
+    res.end()
     return
   }
 

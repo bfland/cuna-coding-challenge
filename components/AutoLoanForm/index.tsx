@@ -119,6 +119,8 @@ class AutoLoanForm extends Component {
             Apply
           </button>
         </form>
+        
+        <div className={styles.error}>{this.state.error}</div>
       </div>
     )
   }
