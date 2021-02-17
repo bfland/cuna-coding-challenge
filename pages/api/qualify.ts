@@ -47,13 +47,17 @@ const handler = (req: NextApiRequest, res: NextApiResponse): void => {
   const data = numberify(JSON.parse(req.body))
 
   if (data.price > MILLION) {
-    res.status(400)
-    res.end()
+    res.status(400).end()
     return
   }
 
   const qualified = qualify(data)
-  res.status(200).json({ qualified })
+  const message = qualified && faker.lorem.sentence()
+
+  res.status(200).json({
+    qualified,
+    ...(message ? { message } : {})
+  })
 }
 
 export default handler
