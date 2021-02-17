@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { withRouter, NextRouter, Router } from 'next/router'
 import styles from './styles.module.css'
 
 type State = {
@@ -10,7 +11,13 @@ type State = {
   creditScore: string
 }
 
-class AutoLoanForm extends Component {
+type WithRouterProps = {
+    router: NextRouter
+}
+
+type FormProps = WithRouterProps & {}
+
+class AutoLoanForm extends Component<FormProps> {
   state: State = {
     error: '',
     price: '',
@@ -35,9 +42,9 @@ class AutoLoanForm extends Component {
     }
 
     const { qualified } = await res.json()
-
+    
     if (qualified) {
-        // reroute to success page
+        this.props.router.push({ pathname: '/new-account' })
     } else {
         // reroute to denial page
     }
@@ -119,11 +126,11 @@ class AutoLoanForm extends Component {
             Apply
           </button>
         </form>
-        
+
         <div className={styles.error}>{this.state.error}</div>
       </div>
     )
   }
 }
 
-export default AutoLoanForm
+export default withRouter(AutoLoanForm)
