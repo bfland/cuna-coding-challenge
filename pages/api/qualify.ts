@@ -20,7 +20,7 @@ type FormDataStringsNumbers = FormData & {
   creditScore: number
 }
 
-const transform = (formData: FormDataStrings): FormDataStringsNumbers => {
+const numberify = (formData: FormDataStrings): FormDataStringsNumbers => {
   return {
     ...formData,
     price: Number(formData.price),
@@ -44,7 +44,7 @@ const qualify = (formData: FormDataStringsNumbers): boolean => {
  * - I would normally implement some server-side validation if writing a complete app.
  */
 const handler = (req: NextApiRequest, res: NextApiResponse): void => {
-  const data = transform(JSON.parse(req.body))
+  const data = numberify(JSON.parse(req.body))
 
   if (data.price > MILLION) {
     res.status(400)
