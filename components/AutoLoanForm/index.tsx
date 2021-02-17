@@ -1,9 +1,9 @@
 import { Component } from 'react'
-import { withRouter, NextRouter, Router } from 'next/router'
+import { withRouter, NextRouter } from 'next/router'
 import styles from './styles.module.css'
 
 type State = {
-    error: ''
+  error: ''
   price: string
   make: string
   model: string
@@ -12,7 +12,7 @@ type State = {
 }
 
 type WithRouterProps = {
-    router: NextRouter
+  router: NextRouter
 }
 
 type FormProps = WithRouterProps & {}
@@ -32,28 +32,40 @@ class AutoLoanForm extends Component<FormProps> {
     e.preventDefault()
 
     const res = await fetch('/api/qualify', {
-        method: 'post',
-        body: JSON.stringify(this.state)
+      method: 'post',
+      body: JSON.stringify(this.state)
     })
-    
+
+    // In a real-world app, this would not suffice to handle all instances of an unsuccessful
+    // request, as other status codes can return ok = false, and are not guaranteed to be due
+    // to the user exceeding the price limit.
     if (!res.ok) {
-        this.setState({ error: 'Price limit exceeded. Please enter a price of $1,000,000 or less and try again.' })
-        return
+      this.setState({
+        error:
+          'Price limit exceeded. Please enter a price of $1,000,000 or less and try again.'
+      })
+      return
     }
 
-    const { qualified } = await res.json()
-    
+    const { qualified, message } = await res.json()
+
     if (qualified) {
-        this.props.router.push({ pathname: '/new-account' })
+      this.props.router.push('/new-account')
     } else {
-        // reroute to denial page
+      this.props.router.push(
+        {
+          pathname: '/disqualified',
+          query: { message }
+        },
+        '/disqualified'
+      )
     }
   }
 
   /**
    * NOTES:
    * - For brevity and simplicity, I'm only focusing on whole numbers for the currency inputs, not decimals.
-   * - I would look to create a reusable component for the input fields if the complexity increased, and 
+   * - I would look to create a reusable component for the input fields if the complexity increased, and
    *   the amount of repeated jsx grew.
    */
   render () {
@@ -61,7 +73,6 @@ class AutoLoanForm extends Component<FormProps> {
       <div className={styles.autoLoanForm}>
         <h1>Auto Loan Application</h1>
         <form className={styles.form} onSubmit={this.onFormSubmit}>
-
           <div className={styles.field}>
             <label>Auto Purchase Price</label>
             <div>
