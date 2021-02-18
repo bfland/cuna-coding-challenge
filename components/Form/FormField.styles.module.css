@@ -1,0 +1,15 @@
+.field {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field input {
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.field label {
+  font-weight: 400;
+  margin-bottom: 5px;
+}
