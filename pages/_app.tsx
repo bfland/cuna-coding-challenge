@@ -8,7 +8,7 @@ function MyApp ({ Component, pageProps }: AppProps) {
   // solution I would ever use in a real-world app to pass state to components,
   // as now all pages receive the 'message' and 'setMessage' props... this
   // could be improved/remedied with the use of Redux action/reducer flow
-  // at a lower level.
+  // at a lower component level.
   const [disqualifiedMsg, setDisqualifiedMsg] = useState('')
 
   return (
