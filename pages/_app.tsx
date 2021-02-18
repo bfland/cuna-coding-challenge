@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import { useState } from 'react'
 import { AppProps } from 'next/app'
+import Layout from '../components/Layout'
 
 function MyApp ({ Component, pageProps }: AppProps) {
   // I know, I know! I took the liberty of a shortcut here - this is not a
@@ -11,11 +12,13 @@ function MyApp ({ Component, pageProps }: AppProps) {
   const [disqualifiedMsg, setDisqualifiedMsg] = useState('')
 
   return (
+    <Layout>
     <Component
       {...pageProps}
       message={disqualifiedMsg}
       setMessage={setDisqualifiedMsg}
     />
+    </Layout>
   )
 }
 
