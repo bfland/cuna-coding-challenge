@@ -52,7 +52,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse): void => {
   }
 
   const qualified = qualify(data)
-  const message = qualified && faker.lorem.sentence()
+  const message = qualified ? '' : faker.lorem.sentence()
 
   res.status(200).json({
     qualified,
