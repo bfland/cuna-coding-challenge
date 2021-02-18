@@ -24,8 +24,8 @@ const FormField = ({
   return (
     <div className={styles.field}>
       <label>{label}</label>
-      <div>
-        {prefix && `${prefix}${' '}`}
+      <div className={styles.input}>
+        {prefix}
         <input
           type={type}
           value={value}
@@ -41,3 +41,5 @@ const FormField = ({
 FormField.defaultProps = {
   inputProps: {}
 }
+
+export default FormField
