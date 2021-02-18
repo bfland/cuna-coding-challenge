@@ -15,7 +15,7 @@ type WithRouterProps = {
   router: NextRouter
 }
 
-type FormProps = WithRouterProps & {}
+type FormProps = WithRouterProps & { setMessage: (msg: string) => void }
 
 class AutoLoanForm extends Component<FormProps> {
   state: State = {
@@ -52,13 +52,8 @@ class AutoLoanForm extends Component<FormProps> {
     if (qualified) {
       this.props.router.push('/new-account')
     } else {
-      this.props.router.push(
-        {
-          pathname: '/disqualified',
-          query: { message }
-        },
-        '/disqualified'
-      )
+      this.props.setMessage(message)
+      this.props.router.push('/disqualified')
     }
   }
 
