@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import AutoLoanForm from '../components/AutoLoanForm'
 
-export default function Home () {
+export default function Home ({ setMessage }) {
   return (
     <div>
       <Head>
@@ -10,7 +10,7 @@ export default function Home () {
       </Head>
 
       <main>
-        <AutoLoanForm />
+        <AutoLoanForm setMessage={setMessage} />
       </main>
     </div>
   )

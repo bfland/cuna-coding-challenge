@@ -1,4 +1,4 @@
-const Disqualified = () => {
+const Disqualified = ({ message }) => {
     return <div>Disqualified</div>
 }
 
