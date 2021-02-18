@@ -13,11 +13,11 @@ function MyApp ({ Component, pageProps }: AppProps) {
 
   return (
     <Layout>
-    <Component
-      {...pageProps}
-      message={disqualifiedMsg}
-      setMessage={setDisqualifiedMsg}
-    />
+      <Component
+        {...pageProps}
+        message={disqualifiedMsg}
+        setMessage={setDisqualifiedMsg}
+      />
     </Layout>
   )
 }
