@@ -7,12 +7,12 @@ const newAccount = () => {
   const [retypedPassword, setRetypedPassword] = useState('')
   const [error, setError] = useState('')
 
-  // Regex to match existence of one special char or number (first condition
-  // on loan from Stack Overflow).
-  const specialCharsRegex = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]|\d/
+  // Regex to match on existence of one special character or number (first
+  // condition on loan from Stack Overflow).
+  const specialCharOrNumberRegex = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]|\d/
 
   const validatePassword = (): boolean => {
-    if (!specialCharsRegex.test(password)) {
+    if (!specialCharOrNumberRegex.test(password)) {
       setError(
         'Password must contain at least one number or special character.'
       )
