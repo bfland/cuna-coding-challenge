@@ -28,9 +28,9 @@ class AutoLoanForm extends Component<FormProps> {
     creditScore: ''
   }
 
-  onFormSubmit = async e => {
+  onFormSubmit = async event => {
     // Disable form submission/page refresh when pressing 'enter' key.
-    e.preventDefault()
+    event.preventDefault()
 
     const res = await fetch('/api/qualify', {
       method: 'post',
@@ -66,57 +66,58 @@ class AutoLoanForm extends Component<FormProps> {
    */
   render () {
     return (
-      <div className={styles.autoLoanForm}>
-        <h1>Auto Loan Application</h1>
-        <Form error={this.state.error} onSubmit={this.onFormSubmit}>
-          <FormField
-            label='Auto Purchase Price'
-            type='number'
-            value={this.state.price}
-            prefix='$'
-            onChange={e => this.setState({ price: e.target.value })}
-            inputProps={{
-              min: 1
-            }}
-          />
+      <Form
+        error={this.state.error}
+        onSubmit={this.onFormSubmit}
+        title='Auto Loan Application'
+      >
+        <FormField
+          label='Auto Purchase Price'
+          type='number'
+          value={this.state.price}
+          prefix='$'
+          onChange={e => this.setState({ price: e.target.value })}
+          inputProps={{
+            min: 1
+          }}
+        />
 
-          <FormField
-            label='Auto Make'
-            type='text'
-            value={this.state.make}
-            onChange={e => this.setState({ make: e.target.value })}
-          />
+        <FormField
+          label='Auto Make'
+          type='text'
+          value={this.state.make}
+          onChange={e => this.setState({ make: e.target.value })}
+        />
 
-          <FormField
-            label='Auto Model'
-            type='text'
-            value={this.state.model}
-            onChange={e => this.setState({ model: e.target.value })}
-          />
+        <FormField
+          label='Auto Model'
+          type='text'
+          value={this.state.model}
+          onChange={e => this.setState({ model: e.target.value })}
+        />
 
-          <FormField
-            label='Estimated Yearly Income'
-            type='number'
-            value={this.state.income}
-            prefix='$'
-            onChange={e => this.setState({ income: e.target.value })}
-            inputProps={{
-              min: 0
-            }}
-          />
+        <FormField
+          label='Estimated Yearly Income'
+          type='number'
+          value={this.state.income}
+          prefix='$'
+          onChange={e => this.setState({ income: e.target.value })}
+          inputProps={{
+            min: 0
+          }}
+        />
 
-          <FormField
-            label='Estimated Credit Score'
-            type='number'
-            value={this.state.creditScore}
-            onChange={e => this.setState({ creditScore: e.target.value })}
-            inputProps={{
-              min: 300,
-              max: 850
-            }}
-          />
-        </Form>
-      </div>
+        <FormField
+          label='Estimated Credit Score'
+          type='number'
+          value={this.state.creditScore}
+          onChange={e => this.setState({ creditScore: e.target.value })}
+          inputProps={{
+            min: 300,
+            max: 850
+          }}
+        />
+      </Form>
     )
   }
 }
