@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import { useState } from 'react'
 import { AppProps } from 'next/app'
-import Layout from '../components/Layout'
+import Layout from '../src/components/Layout'
 
 function MyApp ({ Component, pageProps }: AppProps) {
   // I know, I know! I took the liberty of a shortcut here - this is not a

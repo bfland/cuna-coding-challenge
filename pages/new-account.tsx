@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Form, FormField } from '../components/Form'
+import { Form, FormField } from '../src/components/Form'
 
 const newAccount = () => {
   const [email, setEmail] = useState('')

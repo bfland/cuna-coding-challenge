@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import AutoLoanForm from '../components/AutoLoanForm'
+import AutoLoanForm from '../src/components/AutoLoanForm'
 
 export default function Home ({ setMessage }) {
   return (
