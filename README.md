@@ -1,6 +1,6 @@
 # cuna-coding-challenge
 
-Thanks for taking the time to review my coding challenge submission! You can find build instructions below.
+Thanks for taking the time to review my coding challenge submission!
 
 ## Build Instructions
 This process assumes that you already have Node.js and npm installed on your machine. If that is the case, simply:
